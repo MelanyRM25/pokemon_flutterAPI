@@ -10,22 +10,23 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
+  List<String> items = ['item 1', 'item2', 'item 3', 'item 4'];
+  // TextEditingController emailController = TextEditingController();
+  // TextEditingController passwordController = TextEditingController();
 
-  void login() async {
-    var url = Uri.https('localhost:8000/api/login');
-    var response = await http.get(url);
+  // void login() async {
+  //   var url = Uri.https('localhost:8000/api/login');
+  //   var response = await http.get(url);
 
-    if (response.statusCode == 200) {
-      var jsonResponse =
-          convert.jsonDecode(response.body) as Map<String, dynamic>;
-      var itemCount = jsonResponse['totalItems'];
-      print('Number of books about http: $itemCount.');
-    } else {
-      print('Request failed with status: ${response.statusCode}.');
-    }
-  }
+  //   if (response.statusCode == 200) {
+  //     var jsonResponse =
+  //         convert.jsonDecode(response.body) as Map<String, dynamic>;
+  //     var itemCount = jsonResponse['totalItems'];
+  //     print('Number of books about http: $itemCount.');
+  //   } else {
+  //     print('Request failed with status: ${response.statusCode}.');
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -33,20 +34,24 @@ class _HomeState extends State<Home> {
         appBar: AppBar(
           title: Text("MI APLICACIÓN"),
         ),
-        body: ListView(
+        body: Column(
           children: [
-            Text("Item A"),
-            Text("Item B"),
-            Text("Item C"),
-            Text("Item D"),
-            Text("Item E"),
-            Text("Item F"),
-            Text("Item G"),
-            Text("Item H"),
-            Text("Item I"),
-            Text("Item J"),
-            Text("Item K"),
-            Text("Item L"),
+            ElevatedButton(
+                onPressed: () {
+                  setState(() {
+                    items.add('Item ${items.length + 1}');
+                  });
+                },
+                child: Text("Add Item ")),
+            Expanded(
+              child: ListView.builder(
+                  itemCount: items.length,
+                  itemBuilder: (context, index) {
+                    return ListTile(
+                      title: Text(items[index]),
+                    );
+                  }),
+            ),
           ],
         ));
   }
