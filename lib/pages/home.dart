@@ -39,7 +39,10 @@ class _HomeState extends State<Home> {
             itemBuilder: (context, index) {
               return ListTile(
                 leading: Image.network(
-                    'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index + 1}.png'),
+                  'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index + 1}.png',
+                  width: 50,
+                  height: 50,
+                ),
                 title: Text(pokemons[index]['name']),
               );
             }));
