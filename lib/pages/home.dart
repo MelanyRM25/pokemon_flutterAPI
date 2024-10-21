@@ -31,28 +31,21 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text("MI APLICACIÓN"),
-        ),
-        body: Column(
-          children: [
-            ElevatedButton(
-                onPressed: () {
-                  setState(() {
-                    items.add('Item ${items.length + 1}');
-                  });
-                },
-                child: Text("Add Item ")),
-            Expanded(
-              child: ListView.builder(
-                  itemCount: items.length,
-                  itemBuilder: (context, index) {
-                    return ListTile(
-                      title: Text(items[index]),
-                    );
-                  }),
-            ),
-          ],
-        ));
+      appBar: AppBar(
+        title: Text("MI APLICACIÓN"),
+      ),
+      body: Row(
+        children: [
+          Flexible(
+              child: Container(
+            color: Colors.blueGrey,
+          )),
+          Flexible(
+              child: Container(
+            color: Colors.blueAccent,
+          ))
+        ],
+      ),
+    );
   }
 }
